@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Plains Of Pain</Name>
+  <Repository>ghcr.io/traxo-xx/plainsofpain-server:latest</Repository>
+  <Registry>https://github.com/traxo-xx/plainsofpain-server/pkgs/container/plainsofpain-server</Registry>
+  <Network>bridge</Network>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/traxo-xx/plainsofpain-server/issues</Support>
+  <Project>https://github.com/traxo-xx/plainsofpain-server</Project>
+  <Overview>
+  Docker image for the game Plains of Pain. The repo is based on the enshrouded-server repo made by mornedhels and uses supervisor to handle startup, automatic updates and cleanup.
+
+  ATTENTION: Please have a look at the README on [Github](https://github.com/traxo-xx/plainsofpain-server) get some info on how to generate the world files (currently this should be done under Windows) and general info on running this server.
+  </Overview>
+  <Category>GameServers:</Category>
+  <Icon>https://shared.steamstatic.com/store_item_assets/steam/apps/2218970/header.jpg?t=1727276237</Icon>
+  <Config Name="Game Port" Target="7777" Default="7777" Mode="udp" Description="Container Port: 7777" Type="Port" Display="always" Required="false" Mask="false">7777</Config>
+  <Config Name="Steam Query Port" Target="27016" Default="27016" Mode="udp" Description="Container Port: 27016" Type="Port" Display="always" Required="false" Mask="false">27016</Config>
+  <Config Name="Game Install Files" Target="/opt/plainsofpain" Default="/mnt/user/appdata/plainsofpain/game-install-files" Mode="rw" Description="Container Path: /opt/plainsofpain - This contains the actual game installation and the auto-updater keeps the current version number of the game here." Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="World and Character Files" Target="/home/plainsofpain/.config/unity3d/CobraByteDigital/PlainsOfPain" Default="/mnt/user/appdata/plainsofpain/world-character-files" Mode="rw" Description="Container Path: /home/plainsofpain/.config/unity3d/CobraByteDigital/PlainsOfPain - This is where you have to put the generated world files. It will also contain files for characters when people play on the server." Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="SERVER_NAME" Target="SERVER_NAME" Default="Plains of Pain Server" Mode="" Description="Container Variable: SERVER_NAME - The name of the server" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="SERVER_PASSWORD" Target="SERVER_PASSWORD" Default="" Mode="" Description="Container Variable: SERVER_PASSWORD - The password for the server. Set this if you don't want your server to be open to everyone." Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="SERVER_SEED" Target="SERVER_SEED" Default="40377" Mode="" Description="Container Variable: SERVER_SEED - The seed with which you generated your world." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="SERVER_WORLD_ID" Target="SERVER_WORLD_ID" Default="0" Mode="" Description="Container Variable: SERVER_WORLD_ID - The world ID of your generated world." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="SERVER_DIFFICULTY" Target="SERVER_DIFFICULTY" Default="0|1|2|3|4" Mode="" Description="Container Variable: SERVER_DIFFICULTY - The server's difficulty setting. (0 = Tourist, 1 = Rookies, 2 = True Wastelander, 3 = Veteran, 4 = Overlord)" Type="Variable" Display="always" Required="false" Mask="false">2</Config>
+  <Config Name="SERVER_MAP_ID" Target="SERVER_MAP_ID" Default="0|1|2" Mode="" Description="Container Variable: SERVER_MAP_ID - ID of the map that should be used (0 = Wasteland v0.4, 1 = Dunes v0.4, 2 = Dunes v0.5)" Type="Variable" Display="always" Required="false" Mask="false">0</Config>
+  <Config Name="SERVER_WORLD_SIZE" Target="SERVER_WORLD_SIZE" Default="3|5|7|9|11" Mode="" Description="Container Variable: SERVER_WORLD_SIZE - Size of the server's map (3 = S, 5 = M, 7 = L, 9 = XL, 11 = XXL)" Type="Variable" Display="always" Required="false" Mask="false">7</Config>
+  <Config Name="SERVER_SLOT_COUNT" Target="SERVER_SLOT_COUNT" Default="10" Mode="" Description="Container Variable: SERVER_SLOT_COUNT - Max allowed concurrent players" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="SERVER_QUERYPORT" Target="SERVER_QUERYPORT" Default="10" Mode="" Description="Container Variable: SERVER_QUERYPORT - The steam query port for the server. If you change this you will also have to change the respective Port configuration." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="UPDATE_CRON" Target="UPDATE_CRON" Default="*/30 * * * *" Mode="" Description="Container Variable: UPDATE_CRON - Update game server files cron (eg. '*/30 * * * *' to check for updates every 30 minutes)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="UPDATE_CHECK_PLAYERS" Target="UPDATE_CHECK_PLAYERS" Default="true|false" Mode="" Description="Container Variable: UPDATE_CHECK_PLAYERS - Should the auto-update check if someone is connected." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="GAME_BRANCH" Target="GAME_BRANCH" Default="public" Mode="" Description="Container Variable: GAME_BRANCH - Steam branch (eg. testing) of the Plains of Pain server" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="STEAMCMD_ARGS" Target="STEAMCMD_ARGS" Default="validate" Mode="" Description="Container Variable: STEAMCMD_ARGS - Additional steamcmd args for the updater" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="Container Variable: PUID" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Container Variable: PGID" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+</Container>
